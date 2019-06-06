@@ -19,7 +19,6 @@ import {
 import styles from '../styles/Styles'
 import { fetchSignup } from '../actions/apiActions'
 import { connect } from 'react-redux';
-import { Actions } from 'react-native-router-flux';
 
 
 const mapDispatchToProps = dispatch => ({
@@ -55,7 +54,7 @@ class Signup extends React.Component {
       <View style={styles.footer}>
           <View style={styles.textRow}>
             <RkText rkType='primary3'>Already have an account?</RkText>
-            <RkButton rkType='clear' onPress={Actions.pop}>
+            <RkButton rkType='clear' onPress={() => this.props.navigation.goBack()}>
               <RkText rkType='header6'>Sign in now</RkText>
             </RkButton>
           </View>

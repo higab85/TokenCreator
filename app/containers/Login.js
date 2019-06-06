@@ -1,4 +1,4 @@
-import { Actions } from 'react-native-router-flux';
+// import { Actions } from 'react-native-router-flux';
 import React from 'react';
 import {
   View,
@@ -14,14 +14,31 @@ import {
 } from 'react-native-ui-kitten';
 import styles from '../styles/Styles'
 import Reactotron from 'reactotron-react-native';
+import { connect } from 'react-redux'
+import { fetchAuth } from '../actions/apiActions'
 
+const mapDispatchToProps = dispatch => ({
+  onLoginButtonPressed: (values, isLoggedIn) => {
+    dispatch(fetchAuth(values)).then( () => {
+      if(isLoggedIn)
+        this.props.navigation.navigate("App")
+    })
+  }
+ })
 
-export default class Login extends React.Component {
+ const mapStateToProps = state => {
+  return {
+    isLoggedIn: state.user.isLoggedIn,
+    state: state
+  }
+}
+
+class Login extends React.Component {
 
   constructor(props) {
     super(props)
   }
-  
+
   render() {
     return (
       <RkAvoidKeyboard
@@ -49,13 +66,13 @@ export default class Login extends React.Component {
             <RkButton
               style={styles.save}
               rkType='large'
-              onPress={ () => this.props.onLoginButtonPressed(this.state)}
+              onPress={  () => this.props.onLoginButtonPressed(this.state, this.props.isLoggedIn)}
             >Login</RkButton>
           </View>
           <View style={styles.footer}>
             <View style={styles.textRow}>
               <RkText rkType='primary3'>Don’t have an account?</RkText>
-              <RkButton rkType='clear' onPress={Actions.Signup}>
+              <RkButton rkType='clear' onPress={ () => this.props.navigation.navigate('Signup')}>
                 <RkText rkType='header6'>Sign up now</RkText>
               </RkButton>
             </View>
@@ -65,3 +82,5 @@ export default class Login extends React.Component {
     )
   }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

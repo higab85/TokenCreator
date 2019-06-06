@@ -15,6 +15,7 @@ import { connect } from 'react-redux';
 import { fetchAuth, fetchLogout } from '../actions/apiActions'
 import { updateSettings } from '../actions/settingsActions'
 import Marketplace from './Marketplace'
+import { createBottomTabNavigator, createAppContainer } from 'react-navigation';
 
 const mapDispatchToProps = dispatch => ({
   onLoginButtonPressed: (values) => {
@@ -98,4 +99,12 @@ class Navigator extends React.Component {
   }
 }
 
- export default connect(mapStateToProps, mapDispatchToProps)(Navigator);
+const TabNavigator = createBottomTabNavigator({
+  Home: Login,
+  Settings: Creator,
+  Wallet: Wallet,
+  Marketplace: Marketplace,
+  Settings: Settings
+});
+
+ export default connect(mapStateToProps, mapDispatchToProps)(TabNavigator);

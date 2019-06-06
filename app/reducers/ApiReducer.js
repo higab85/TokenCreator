@@ -1,6 +1,5 @@
 import ActionTypes from '../constants/ActionTypes';
 import Reactotron from 'reactotron-react-native';
-import { Actions } from 'react-native-router-flux';
 
 const initialState = {
   isFetching: false,

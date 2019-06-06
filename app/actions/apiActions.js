@@ -98,7 +98,7 @@ export function fetchAuth(credentials){
 export function fetchLogout(){
 
   return function(dispatch) {
-    dispatch(requestLogout())
+    // dispatch(requestLogout())
     return fetch( 'http://' + getHost() + ':8181/wapi/logout', {
         method: 'POST',
         headers: {
