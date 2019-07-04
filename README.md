@@ -1,3 +1,6 @@
+# This is the old repo for the token creator. Please visit https://github.com/FuturICT2/TokenCreatorApp for the new repo
+
+
 # Finance 4.0 Native Mobile App
 
 This repository contains a front-end of the Finance 4.0 developed in React Native for Android and iOS devices.
